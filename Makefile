@@ -25,4 +25,4 @@ re: fclean all
 dev: $(NAME)
 	@$(CC) $(CFLAGS) main.c libftprintf.a
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re dev

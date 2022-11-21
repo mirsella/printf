@@ -6,7 +6,7 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:16:36 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/21 18:49:42 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/21 20:03:06 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 # define LIBFTPRINTF_H
 
 # include "libft/libft.h"
+# include "stdarg.h"
 
-// %[$][flags][width][.precision][length modifier]conversion
 typedef struct s_formatoptions {
 	int	byteswrotes;
 	int	width;
 	int	precision;
-	int	zero;
-	int	dot;
 	int	dash;
+	int	zero;
+	int	hash;
 	int	space;
+	int	plus;
 }	t_formatoptions;
 
 int	ft_printf(const char *format, ...);
