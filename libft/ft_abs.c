@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 16:07:06 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/22 19:07:49 by mirsella         ###   ########.fr       */
+/*   Created: 2022/11/22 18:32:57 by mirsella          #+#    #+#             */
+/*   Updated: 2022/11/22 18:33:07 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
-#include "stdio.h"
-
-int	main(void)
+int	ft_abs(int n)
 {
-	char	*format = "hello%-2c%-6.5s%-6.4x";
-	printf(": %d\n", ft_printf(format, '_', "worldaa", 42));
-	printf(": %d\n", printf(format, '_', "worldaa", 42));
+	if (n < 0)
+		return (-n);
+	return (n);
 }

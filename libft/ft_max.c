@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_max.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 16:07:06 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/22 19:07:49 by mirsella         ###   ########.fr       */
+/*   Created: 2022/11/22 17:49:59 by mirsella          #+#    #+#             */
+/*   Updated: 2022/11/22 17:50:36 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
-#include "stdio.h"
-
-int	main(void)
+int	ft_max(int a, int b)
 {
-	char	*format = "hello%-2c%-6.5s%-6.4x";
-	printf(": %d\n", ft_printf(format, '_', "worldaa", 42));
-	printf(": %d\n", printf(format, '_', "worldaa", 42));
+	if (a > b)
+		return (a);
+	return (b);
 }
