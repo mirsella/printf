@@ -6,23 +6,18 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:40:14 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/22 18:47:33 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/22 22:44:10 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
 
-int	ft_putnbr(int n)
+int	ft_putnbr(long long n)
 {
 	int		i;
 
 	i = 0;
-	if (n == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		return (11);
-	}
 	if (n < 0)
 	{
 		i += write(1, "-", 1);
@@ -66,11 +61,11 @@ static int	ft_isbase(char *base)
 	return (1);
 }
 
-int	ft_putnbr_base(int nbr, char *base)
+int	ft_putnbr_base(long long nbr, char *base)
 {
-	int		baselen;
-	int		i;
-	int		nb;
+	int			baselen;
+	int			i;
+	long long	nb;
 
 	baselen = ft_strlen(base);
 	i = 0;

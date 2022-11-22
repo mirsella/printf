@@ -6,7 +6,7 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:03:20 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/22 21:59:58 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/22 22:56:05 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	ft_print_hex(t_formatoptions *fo, unsigned int n, char conversion)
 	if (fo->precision >= 0)
 		fo->zero = 0;
 	ft_print_hash(fo, n, conversion);
-	while (precision-- > ft_nbrlen_base(ft_abs(n), 16))
+	while (precision-- > ft_nbrlen_base(ft_llabs(n), 16))
 		fo->byteswrotes += ft_putchar('0');
 	if (conversion == 'x')
 		fo->byteswrotes += ft_putnbr_base(n, "0123456789abcdef");

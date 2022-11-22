@@ -6,7 +6,7 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:59:31 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/22 21:42:28 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/22 22:45:17 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,11 @@ void	callprinters(t_formatoptions *fo, char conversion, va_list args)
 	if (conversion == 'p')
 		ft_print_pointer(fo, va_arg(args, void *));
 	if (conversion == 'd' || conversion == 'i')
-	{
-		// if (fo->precision == -1)
-			// fo->precision = 1;
 		ft_print_int(fo, va_arg(args, int));
-	}
 	if (conversion == 'u')
 		ft_print_unsigned_int(fo, va_arg(args, unsigned int));
 	if (conversion == 'x' || conversion == 'X')
-	{
-		// if (fo->precision == -1)
-			// fo->precision = 1;
 		ft_print_hex(fo, va_arg(args, unsigned int), conversion);
-	}
 }
 
 int	parse_flag(t_formatoptions *fo, const char *format)
