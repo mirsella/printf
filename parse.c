@@ -6,7 +6,7 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:59:31 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/22 19:02:27 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/22 21:42:28 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,23 @@
 void	callprinters(t_formatoptions *fo, char conversion, va_list args)
 {
 	if (conversion == 'c')
-	{
 		ft_print_char(fo, va_arg(args, int));
-	}
-	else if (conversion == 's')
-	{
+	if (conversion == 's')
 		ft_print_string(fo, va_arg(args, char *));
-	}
-	else if (conversion == 'p')
-	{
+	if (conversion == 'p')
 		ft_print_pointer(fo, va_arg(args, void *));
-	}
-	else if (conversion == 'd' || conversion == 'i')
+	if (conversion == 'd' || conversion == 'i')
 	{
-		// ft_print_int(fo, va_arg(args, int));
+		// if (fo->precision == -1)
+			// fo->precision = 1;
+		ft_print_int(fo, va_arg(args, int));
 	}
-	else if (conversion == 'u')
+	if (conversion == 'u')
+		ft_print_unsigned_int(fo, va_arg(args, unsigned int));
+	if (conversion == 'x' || conversion == 'X')
 	{
-		// ft_print_unsigned_int(fo, va_arg(args, unsigned int));
-	}
-	else if (conversion == 'x' || conversion == 'X')
-	{
+		// if (fo->precision == -1)
+			// fo->precision = 1;
 		ft_print_hex(fo, va_arg(args, unsigned int), conversion);
 	}
 }

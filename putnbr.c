@@ -6,43 +6,62 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:19:10 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/22 19:14:10 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/22 22:06:44 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/libft.h"
 #include "libftprintf.h"
 
-// precision pad on the left with 0
-// width pad on the left with space or 0 if fo->zero is set
-// if precision and zero set zero is ignored
-void	ft_print_hex(t_formatoptions *fo, unsigned int n, char conversion)
+static void	ft_print_width(t_formatoptions *fo, int n)
+{
+	while (fo->width-- > ft_max(fo->precision, ft_nbrlen(ft_abs(n))))
+	{
+		if (fo->zero)
+			fo->byteswrotes += ft_putchar('0');
+		else
+			fo->byteswrotes += ft_putchar(' ');
+	}
+}
+
+void	ft_print_int(t_formatoptions *fo, int n)
 {
 	int	precision;
 
 	precision = fo->precision;
-	if (fo->precision == 0 && n == 0)
+	if (n == 0 && fo->precision == 0)
 	{
-		while (fo->width-- > 0)
-			fo->byteswrotes += ft_putchar(' ');
+		ft_print_width(fo, 0);
 		return ;
 	}
-	if (fo->precision == -1)
-		fo->precision = 1;
-	if (fo->dash == 0)
-	{
-			while (fo->width-- > ft_max(fo->precision, ft_nbrlen_base(n, 16)))
-				if (fo->zero)
-					fo->byteswrotes += ft_putchar('0');
-				else
-					fo->byteswrotes += ft_putchar(' ');
-	}
-	while (precision-- > ft_nbrlen_base(n, 16))
+	if (fo->precision >= 0)
+		fo->zero = 0;
+	if ((fo->plus || fo->space) || n < 0)
+		fo->width--;
+	if (fo->dash == 0 && fo->zero == 0)
+		ft_print_width(fo, n);
+	if (n < 0)
+		fo->byteswrotes += ft_putchar('-');
+	if (fo->plus && n >= 0)
+		fo->byteswrotes += ft_putchar('+');
+	else if (fo->space && n >= 0)
+		fo->byteswrotes += ft_putchar(' ');
+	if (fo->dash == 0 && fo->zero == 1)
+		ft_print_width(fo, n);
+	while (precision-- > ft_nbrlen(ft_abs(n)))
 		fo->byteswrotes += ft_putchar('0');
-	if (conversion == 'x')
-		fo->byteswrotes += ft_putnbr_base(n, "0123456789abcdef");
-	else
-		fo->byteswrotes += ft_putnbr_base(n, "0123456789ABCDEF");
+	fo->byteswrotes += ft_putnbr(ft_abs(n));
 	if (fo->dash == 1)
-		while (fo->width-- > ft_max(fo->precision, ft_nbrlen_base(n, 16)))
-			fo->byteswrotes += ft_putchar(' ');
+		ft_print_width(fo, n);
+}
+
+void	ft_print_unsigned_int(t_formatoptions *fo, unsigned int n)
+{
+	fo->byteswrotes += ft_putnbr(n);
+}
+
+void	ft_print_pointer(t_formatoptions *fo, void *p)
+{
+	fo->hash = 1;
+	ft_print_hex(fo, (unsigned long)p, 'x');
 }
