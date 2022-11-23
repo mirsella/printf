@@ -6,7 +6,7 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:56:14 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/23 14:48:59 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/23 16:09:05 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,40 @@ int	ft_putull_hex(unsigned long long num)
 	return (i);
 }
 
+void	ft_print_width_ullhex(t_formatoptions *fo, unsigned long long n)
+{
+	while ((unsigned long long)fo->width-- > ft_ullmax(fo->precision, ft_ullnbrlen_base(n, 16)))
+	{
+		if (fo->zero)
+			fo->byteswrotes += ft_putchar('0');
+		else
+			fo->byteswrotes += ft_putchar(' ');
+	}
+}
+
+void	ft_print_ullhash(t_formatoptions *fo, unsigned long long n, char conversion)
+{
+	if (fo->hash && n != 0)
+	{
+		fo->width -= 2;
+		if (fo->zero)
+		{
+			fo->byteswrotes += ft_printf("0%c", conversion);
+			ft_print_width_ullhex(fo, n);
+		}
+		else
+		{
+			if (fo->dash == 0)
+			{
+				ft_print_width_ullhex(fo, n);
+			}
+			fo->byteswrotes += ft_printf("0%c", conversion);
+		}
+	}
+	else if (fo->dash == 0)
+		ft_print_width_ullhex(fo, n);
+}
+
 void	ft_print_pointer(t_formatoptions *fo, unsigned long long n)
 {
 	int	precision;
@@ -44,18 +78,18 @@ void	ft_print_pointer(t_formatoptions *fo, unsigned long long n)
 	if (n == 0)
 	{
 		if (fo->dash == 0)
-			ft_print_width_hex(fo, 100000);
+			ft_print_width_ullhex(fo, 100000);
 		fo->byteswrotes += ft_putstr("(nil)");
 		if (fo->dash == 1)
-			ft_print_width_hex(fo, 100000);
+			ft_print_width_ullhex(fo, 100000);
 	}
 	else
 	{
-		ft_print_hash(fo, n, 'x');
-		while (precision-- > ft_nbrlen_base(ft_llabs(n), 16))
+		ft_print_ullhash(fo, n, 'x');
+		while (precision-- > ft_ullnbrlen_base(n, 16))
 			fo->byteswrotes += ft_putchar('0');
 		fo->byteswrotes += ft_putull_hex(n);
 		if (fo->dash == 1)
-			ft_print_width_hex(fo, n);
+			ft_print_width_ullhex(fo, n);
 	}
 }

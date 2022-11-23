@@ -1,4 +1,4 @@
-SRCS = ft_printf.c parse.c putchar.c putnbr.c putptr.c puthex.c
+SRCS = ft_printf.c parse.c putstr.c putnbr.c putptr.c puthex.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -15,14 +15,18 @@ $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
 clean:
+	make -C libft clean
 	rm -f $(OBJS)
 
 fclean: clean
+	make -C libft fclean
 	rm -f $(NAME)
 
 re: fclean all
 
+bonus: all
+
 dev: $(NAME)
 	@$(CC) $(CFLAGS) main.c libftprintf.a
 
-.PHONY: all clean fclean re dev
+.PHONY: all clean fclean re dev bonus

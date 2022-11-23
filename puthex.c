@@ -6,7 +6,7 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 12:20:35 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/23 12:21:31 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/23 16:09:30 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_print_width_hex(t_formatoptions *fo, long long n)
 {
-	while (fo->width-- > ft_max(fo->precision, ft_nbrlen_base(ft_llabs(n), 16)))
+	while ((long long)fo->width-- > ft_llmax(fo->precision, ft_nbrlen_base(ft_llabs(n), 16)))
 	{
 		if (fo->zero)
 			fo->byteswrotes += ft_putchar('0');

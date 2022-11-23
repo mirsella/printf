@@ -6,7 +6,7 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:40:14 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/23 15:01:04 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/22 22:44:10 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@ int	ft_putnbr(long long n)
 	int		i;
 
 	i = 0;
-	if (n == -9223372036854775807 - 1)
-	{
-		i += ft_putstr("-9223372036854775808");
-		return (i);
-	}
 	if (n < 0)
 	{
 		i += write(1, "-", 1);
@@ -77,12 +72,6 @@ int	ft_putnbr_base(long long nbr, char *base)
 	nb = nbr;
 	if (!ft_isbase(base))
 		return (0);
-	if (nbr == -9223372036854775807 - 1)
-	{
-		i += ft_putnbr_base(nbr / baselen, base);
-		i += ft_putnbr_base(nbr % baselen, base);
-		return (i);
-	}
 	if (nbr < 0)
 	{
 		i += write(1, "-", 1);

@@ -6,7 +6,7 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:16:36 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/23 12:21:35 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/23 15:46:35 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ typedef struct s_formatoptions
 	int	plus;
 }	t_formatoptions;
 
-void	ft_print_width_hex(t_formatoptions *fo, long long n);
-void	ft_print_hash(t_formatoptions *fo, long long n, char conversion);
 void	ft_print_string(t_formatoptions *fo, char *s);
 void	ft_print_char(t_formatoptions *fo, unsigned char c);
 void	ft_print_int(t_formatoptions *fo, int n);
