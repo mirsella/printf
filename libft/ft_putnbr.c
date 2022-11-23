@@ -6,13 +6,12 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:40:14 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/23 12:01:02 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/23 15:01:04 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
-#include "limits.h"
 
 int	ft_putnbr(long long n)
 {

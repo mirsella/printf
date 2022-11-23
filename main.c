@@ -6,13 +6,14 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:07:06 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/23 12:15:52 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/23 15:02:16 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 #include "stdio.h"
+#include <limits.h>
 
 int	main(void)
 {
@@ -20,10 +21,7 @@ int	main(void)
 	// printf(": %d\n", ft_printf(format, -300, '_', "worldaa", 42, 4294967295));
 	// printf(": %d\n",    printf(format, -300, '_', "worldaa", 42, 4294967295));
 
-	char	*format = "%p %p %p %p %-8.3p";
-	printf(": %d\n", ft_printf(format, LONG_MIN, LONG_MAX, ULONG_MAX, -ULONG_MAX, 0));
-	printf(": %d\n",    printf(format, LONG_MIN, LONG_MAX, ULONG_MAX, -ULONG_MAX, 0));
-	// char	*format = "%p\n";
-	// ft_printf(format, LONG_MAX);
-	// printf(format, LONG_MAX);
+	char	*format = "%d %d";
+	printf(": %d\n", ft_printf(format, INT_MIN, -20));
+	printf(": %d\n",    printf(format, INT_MIN, -20));
 }

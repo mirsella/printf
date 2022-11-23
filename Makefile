@@ -3,7 +3,7 @@ SRCS = ft_printf.c parse.c putchar.c putnbr.c putptr.c puthex.c
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror
 
 NAME = libftprintf.a
 

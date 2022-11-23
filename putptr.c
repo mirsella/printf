@@ -6,7 +6,7 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:56:14 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/23 12:21:08 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/23 14:48:59 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	ft_print_pointer(t_formatoptions *fo, unsigned long long n)
 		if (fo->dash == 0)
 			ft_print_width_hex(fo, 100000);
 		fo->byteswrotes += ft_putstr("(nil)");
+		if (fo->dash == 1)
+			ft_print_width_hex(fo, 100000);
 	}
 	else
 	{
@@ -53,7 +55,7 @@ void	ft_print_pointer(t_formatoptions *fo, unsigned long long n)
 		while (precision-- > ft_nbrlen_base(ft_llabs(n), 16))
 			fo->byteswrotes += ft_putchar('0');
 		fo->byteswrotes += ft_putull_hex(n);
+		if (fo->dash == 1)
+			ft_print_width_hex(fo, n);
 	}
-	if (fo->dash == 1)
-		ft_print_width_hex(fo, 100000);
 }
