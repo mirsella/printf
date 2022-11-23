@@ -6,7 +6,7 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:19:10 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/23 16:08:13 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/23 16:42:54 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_printf.h"
 #include <bits/types.h>
 
-void	ft_print_width(t_formatoptions *fo, long long n)
+void	ft_print_width(t_formatoptions *fo, long n)
 {
 	while (fo->width-- > ft_llmax(fo->precision, ft_nbrlen(ft_llabs(n))))
 	{
@@ -37,6 +37,8 @@ void	ft_print_int(t_formatoptions *fo, int n)
 	}
 	if (fo->precision >= 0)
 		fo->zero = 0;
+	if (fo->precision == -1)
+		fo->precision = 1;
 	if ((fo->plus || fo->space) || n < 0)
 		fo->width--;
 	if (fo->dash == 0 && fo->zero == 0)

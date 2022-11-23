@@ -6,7 +6,7 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 11:56:14 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/23 16:09:05 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/23 16:49:26 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_putull_hex(unsigned long long num)
 
 void	ft_print_width_ullhex(t_formatoptions *fo, unsigned long long n)
 {
-	while ((unsigned long long)fo->width-- > ft_ullmax(fo->precision, ft_ullnbrlen_base(n, 16)))
+	while (fo->width-- > ft_llmax(fo->precision, ft_ullnbrlen_base(n, 16)))
 	{
 		if (fo->zero)
 			fo->byteswrotes += ft_putchar('0');
@@ -75,6 +75,8 @@ void	ft_print_pointer(t_formatoptions *fo, unsigned long long n)
 	precision = fo->precision;
 	if (fo->precision >= 0)
 		fo->zero = 0;
+	if (fo->precision == -1)
+		fo->precision = 1;
 	if (n == 0)
 	{
 		if (fo->dash == 0)
