@@ -6,12 +6,13 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:19:10 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/22 22:55:08 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/23 11:56:01 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
+#include <bits/types.h>
 
 static void	ft_print_width(t_formatoptions *fo, long long n)
 {
@@ -76,10 +77,4 @@ void	ft_print_unsigned_int(t_formatoptions *fo, unsigned int n)
 	fo->byteswrotes += ft_putnbr(ft_llabs(n));
 	if (fo->dash == 1)
 		ft_print_width(fo, n);
-}
-
-void	ft_print_pointer(t_formatoptions *fo, void *p)
-{
-	fo->hash = 1;
-	ft_print_hex(fo, (unsigned long)p, 'x');
 }

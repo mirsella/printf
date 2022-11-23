@@ -6,11 +6,11 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:59:31 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/22 22:45:17 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/23 11:42:57 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void	callprinters(t_formatoptions *fo, char conversion, va_list args)
 {
@@ -19,7 +19,7 @@ void	callprinters(t_formatoptions *fo, char conversion, va_list args)
 	if (conversion == 's')
 		ft_print_string(fo, va_arg(args, char *));
 	if (conversion == 'p')
-		ft_print_pointer(fo, va_arg(args, void *));
+		ft_print_pointer(fo, va_arg(args, unsigned long long));
 	if (conversion == 'd' || conversion == 'i')
 		ft_print_int(fo, va_arg(args, int));
 	if (conversion == 'u')
