@@ -6,12 +6,22 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:40:14 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/22 22:44:10 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:45:44 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
+
+static void	count_bytes(int *counter, int byteswrotes)
+{
+	if (!counter)
+		return ;
+	if (byteswrotes < 0 || *counter < 0)
+		*counter = -1;
+	else
+		*counter += byteswrotes;
+}
 
 int	ft_putnbr(long long n)
 {
@@ -20,18 +30,17 @@ int	ft_putnbr(long long n)
 	i = 0;
 	if (n < 0)
 	{
-		i += write(1, "-", 1);
+		count_bytes(&i, write(1, "-", 1));
 		n = -n;
 	}
 	if (n > 9)
 	{
-		i += ft_putnbr(n / 10);
-		i += ft_putnbr(n % 10);
+		count_bytes(&i, ft_putnbr(n / 10));
+		count_bytes(&i, ft_putnbr(n % 10));
 	}
 	else
 	{
-		ft_putchar(n + '0');
-		i++;
+		count_bytes(&i, ft_putchar(n + '0'));
 	}
 	return (i);
 }
@@ -64,21 +73,21 @@ static int	ft_isbase(char *base)
 int	ft_putnbr_base(long long nbr, char *base)
 {
 	int			baselen;
-	int			i;
+	int			byteswrotes;
 	long long	nb;
 
 	baselen = ft_strlen(base);
-	i = 0;
+	byteswrotes = 0;
 	nb = nbr;
 	if (!ft_isbase(base))
 		return (0);
 	if (nbr < 0)
 	{
-		i += write(1, "-", 1);
+		count_bytes(&byteswrotes, write(1, "-", 1));
 		nb = -nb;
 	}
 	if (nb >= baselen)
-		i += ft_putnbr_base(nb / baselen, base);
-	i += write(1, &base[nb % baselen], 1);
-	return (i);
+		count_bytes(&byteswrotes, ft_putnbr_base(nb / baselen, base));
+	count_bytes(&byteswrotes, write(1, &base[nb % baselen], 1));
+	return (byteswrotes);
 }

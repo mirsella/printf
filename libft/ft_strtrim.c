@@ -6,7 +6,7 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 23:13:50 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/23 16:50:25 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/13 15:02:53 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,11 @@ char	*ft_strtrim(char const *s1, char const *set)
 	ft_strlcpy(trimmed, s1 + start, end - start + 1);
 	return (trimmed);
 }
+
+// #include "stdio.h"
+// int	main(void)
+// {
+// 	char	*s = "          ";
+// 	char	*set = "\t \n";
+// 	printf("'%s'\n", ft_strtrim(s, set));
+// }

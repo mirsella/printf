@@ -6,7 +6,7 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 14:59:31 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/23 11:42:57 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:42:21 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	parse_flag(t_formatoptions *fo, const char *format)
 	return (i);
 }
 
-int	fill_fo(t_formatoptions *fo, const char *format, va_list args)
+int	parse_callprinters(t_formatoptions *fo, const char *format, va_list args)
 {
 	int	i;
 

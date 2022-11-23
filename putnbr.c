@@ -6,7 +6,7 @@
 /*   By: mirsella <mirsella@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:19:10 by mirsella          #+#    #+#             */
-/*   Updated: 2022/11/23 16:42:54 by mirsella         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:53:33 by mirsella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,20 @@ void	ft_print_width(t_formatoptions *fo, long n)
 	while (fo->width-- > ft_llmax(fo->precision, ft_nbrlen(ft_llabs(n))))
 	{
 		if (fo->zero)
-			fo->byteswrotes += ft_putchar('0');
+			count_bytes(&fo->byteswrotes, ft_putchar('0'));
 		else
-			fo->byteswrotes += ft_putchar(' ');
+			count_bytes(&fo->byteswrotes, ft_putchar(' '));
 	}
+}
+
+void	ft_print_sign(t_formatoptions *fo, long n)
+{
+	if (n < 0)
+		count_bytes(&fo->byteswrotes, ft_putchar('-'));
+	else if (fo->plus)
+		count_bytes(&fo->byteswrotes, ft_putchar('+'));
+	else if (fo->space)
+		count_bytes(&fo->byteswrotes, ft_putchar(' '));
 }
 
 void	ft_print_int(t_formatoptions *fo, int n)
@@ -43,17 +53,12 @@ void	ft_print_int(t_formatoptions *fo, int n)
 		fo->width--;
 	if (fo->dash == 0 && fo->zero == 0)
 		ft_print_width(fo, n);
-	if (n < 0)
-		fo->byteswrotes += ft_putchar('-');
-	else if (fo->plus)
-		fo->byteswrotes += ft_putchar('+');
-	else if (fo->space)
-		fo->byteswrotes += ft_putchar(' ');
+	ft_print_sign(fo, n);
 	if (fo->dash == 0 && fo->zero == 1)
 		ft_print_width(fo, n);
 	while (precision-- > ft_nbrlen(ft_llabs(n)))
-		fo->byteswrotes += ft_putchar('0');
-	fo->byteswrotes += ft_putnbr(ft_llabs(n));
+		count_bytes(&fo->byteswrotes, ft_putchar('0'));
+	count_bytes(&fo->byteswrotes, ft_putnbr(ft_llabs(n)));
 	if (fo->dash == 1)
 		ft_print_width(fo, n);
 }
@@ -75,8 +80,8 @@ void	ft_print_unsigned_int(t_formatoptions *fo, unsigned int n)
 	if (fo->dash == 0 && fo->zero == 1)
 		ft_print_width(fo, n);
 	while (precision-- > ft_nbrlen(ft_llabs(n)))
-		fo->byteswrotes += ft_putchar('0');
-	fo->byteswrotes += ft_putnbr(ft_llabs(n));
+		count_bytes(&fo->byteswrotes, ft_putchar('0'));
+	count_bytes(&fo->byteswrotes, ft_putnbr(ft_llabs(n)));
 	if (fo->dash == 1)
 		ft_print_width(fo, n);
 }
